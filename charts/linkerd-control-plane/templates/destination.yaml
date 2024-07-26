@@ -285,6 +285,7 @@ spec:
             path: /ping
             port: 9997
           initialDelaySeconds: 10
+          timeoutSeconds: 5
         name: sp-validator
         ports:
         - containerPort: 8443
@@ -296,6 +297,7 @@ spec:
           httpGet:
             path: /ready
             port: 9997
+          timeoutSeconds: 5
         {{- if .Values.spValidatorResources -}}
         {{- include "partials.resources" .Values.spValidatorResources | nindent 8 }}
         {{- end }}
@@ -345,6 +347,7 @@ spec:
           httpGet:
             path: /live
             port: admin-http
+          timeoutSeconds: 5
         name: policy
         ports:
         - containerPort: 8090
@@ -359,6 +362,7 @@ spec:
             path: /ready
             port: admin-http
           initialDelaySeconds: 10
+          timeoutSeconds: 5
         {{- if .Values.policyController.resources }}
         {{- include "partials.resources" .Values.policyController.resources | nindent 8 }}
         {{- end }}
